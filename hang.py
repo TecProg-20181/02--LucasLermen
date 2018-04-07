@@ -3,20 +3,25 @@ import string
 
 WORDLIST_FILENAME = "palavras.txt"
 
-def loadWords():
-    """
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
-    print "Loading word list from file..."
-    # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r', 0)
-    # line: string
-    line = inFile.readline()
-    # wordlist: list of strings
-    wordlist = string.split(line)
-    print "  ", len(wordlist), "words loaded."
+def openFile(fileName):
+    return open(fileName, 'r', 0)
+
+def readFileLine(inFile):
+    return inFile.readline()
+
+def createWordList(line):
+    return string.split(line)
+
+def chooseWord(wordlist):
     return random.choice(wordlist)
+
+def printHeader(wordlist, secretWord):
+    print '-------------------------------------------------'
+    print 'Loading word list from file...'
+    print len(wordlist), 'words loaded.'
+    print 'Welcome to the game, Hangam!'
+    print 'I am thinking of a word that is', len(secretWord), 'letters long.'
+    print '-------------------------------------------------'
 
 
 def isWordGuessed(secretWord, lettersGuessed):
@@ -55,9 +60,8 @@ def hangman(secretWord):
 
     guesses = 8
     lettersGuessed = []
-    print 'Welcome to the game, Hangam!'
-    print 'I am thinking of a word that is', len(secretWord), ' letters long.'
-    print '-------------'
+
+
 
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
         print 'You have ', guesses, 'guesses left.'
@@ -87,7 +91,7 @@ def hangman(secretWord):
                 if letter in lettersGuessed:
                     guessed += letter
                 else:
-                    guessed += '_ '
+                    guessed += ' _ '
 
             print 'Good Guess: ', guessed
         else:
@@ -111,7 +115,12 @@ def hangman(secretWord):
             print 'Sorry, you ran out of guesses. The word was ', secretWord, '.'
 
 
+# inFile: file
+inFile = openFile(WORDLIST_FILENAME)
+# line: string
+line = readFileLine(inFile)
+wordlist = createWordList(line)
+secretWord = chooseWord(wordlist).lower()
 
-
-secretWord = loadWords().lower()
+printHeader(wordlist, secretWord)
 hangman(secretWord)
