@@ -5,22 +5,17 @@ WORDLIST_FILENAME = "words.txt"
 
 class Words():
     def __init__(self):
-        self.inFile = ""
-        self.line = ""
-        self.wordlist = ""
+        self.__inFile = ''
+        self.__line = ''
+        self.__wordlist = ''
 
     def loadWord(self):
         # inFile: file
-        self.inFile = open(WORDLIST_FILENAME, 'r', 0)
+        self.__inFile = open(WORDLIST_FILENAME, 'r', 0)
         # line: string
-        self.line = self.inFile.readline()
-        self.wordlist = string.split(self.line)
-        return random.choice(self.wordlist)
+        self.__line = self.__inFile.readline()
+        self.__wordlist = string.split(self.__line)
+        return random.choice(self.__wordlist)
 
-    def wordMessage(self,secretWord):
-        print '-------------------------------------------------'
-        print "Loading word list from file..."
-        print len(self.wordlist), "words loaded."
-        print 'Welcome to the game, Hangam!'
-        print 'I am thinking of a word that is', len(secretWord), 'letters long.'
-        print '-------------------------------------------------'
+    def wordListSize(self):
+        return len(self.__wordlist)
