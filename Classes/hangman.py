@@ -5,11 +5,12 @@ class Hangman():
         self.lettersGuessed = []
 
     def printHeader(self, words):
-        print '-------------------------------------------------'
+        print "-------------------------------------------------"
         print "Loading word list from file..."
         print words.wordListSize(), "words loaded."
         print "Welcome to the game, Hangam!"
         print "I am thinking of a word that is", len(self.secretWord), "letters long."
+        print "The word have", words.differentLettersSize(), "different letters"
         print "-------------------------------------------------"
 
     def isWordGuessed(self):
@@ -58,7 +59,6 @@ class Hangman():
             return 'Congratulations, you won!'
         else:
             return 'Sorry, you ran out of guesses. The word was ' + self.secretWord + '.'
-
 
     def startGame(self):
         while self.isWordGuessed() == False and self.guesses >0:

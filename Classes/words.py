@@ -5,17 +5,32 @@ WORDLIST_FILENAME = "words.txt"
 
 class Words():
     def __init__(self):
-        self.__inFile = ''
-        self.__line = ''
-        self.__wordlist = ''
+        self.inFile = ''
+        self.line = ''
+        self.wordlist = ''
+        self.wordDifLetters = []
 
     def loadWord(self):
         # inFile: file
-        self.__inFile = open(WORDLIST_FILENAME, 'r', 0)
+        self.inFile = open(WORDLIST_FILENAME, 'r', 0)
         # line: string
-        self.__line = self.__inFile.readline()
-        self.__wordlist = string.split(self.__line)
-        return random.choice(self.__wordlist)
+        self.line = self.inFile.readline()
+        self.wordlist = string.split(self.line)
+
+        chosenWord = random.choice(self.wordlist)
+        self.differentLetters(chosenWord)
+
+        return chosenWord
 
     def wordListSize(self):
-        return len(self.__wordlist)
+        return len(self.wordlist)
+
+    def differentLettersSize(self):
+        return len(self.wordDifLetters)
+
+    def differentLetters(self, chosenWord):
+        for letter in chosenWord:
+            if letter in self.wordDifLetters:
+                pass
+            else:
+                self.wordDifLetters.append(letter)
