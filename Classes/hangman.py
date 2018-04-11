@@ -1,17 +1,18 @@
+from os import system
+
 class Hangman():
-    def __init__(self, secretWord):
-        self.guesses = 8
+    def __init__(self, secretWord, guesses):
+        self.guesses = guesses
         self.secretWord = secretWord
         self.lettersGuessed = []
 
     def printHeader(self, words):
-        print "-------------------------------------------------"
-        print "Loading word list from file..."
-        print words.wordListSize(), "words loaded."
-        print "Welcome to the game, Hangam!"
-        print "I am thinking of a word that is", len(self.secretWord), "letters long."
-        print "The word have", words.differentLettersSize(), "different letters"
-        print "-------------------------------------------------"
+        print "\033[91m-------------------------------------------------\033[33m"
+        print "\033[91mWelcome to the game, Hangam!\033[33m"
+        print "\033[91mI am thinking of a word that is\033[33m", len(self.secretWord), "\033[91mletters long.\033[33m"
+        print "\033[91mThe word have\033[33m", words.differentLettersSize(), "\033[91mdifferent letters\033[33m"
+        print "\033[91m-------------------------------------------------\033[33m"
+
 
     def isWordGuessed(self):
         for letter in self.secretWord:

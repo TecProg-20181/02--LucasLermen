@@ -1,10 +1,12 @@
 from Classes.words import Words
 from Classes.hangman import Hangman
 
-words = Words()
-secretWord = words.loadWord().lower()
+playerGuesses = 8
 
-hangman = Hangman(secretWord)
+words = Words(playerGuesses)
+secretWord = words.chooseWord().lower()
+
+hangman = Hangman(secretWord, playerGuesses)
 
 hangman.printHeader(words)
 hangman.startGame()
